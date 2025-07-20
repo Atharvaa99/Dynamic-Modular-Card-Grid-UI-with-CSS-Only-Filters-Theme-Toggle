@@ -1,52 +1,243 @@
-body{
+body {
     margin: 0;
     width: 100vw;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     letter-spacing: 2px;
     line-height: 1.5;
     word-spacing: 3px;
 }
-.ui-shell{
-    container-type: Inline-size;
+
+li::marker {
+    content: "";
+}
+
+.ui-shell {
+    container-type: inline-size;
     container-name: layout;
 }
-.card-container{
-    padding: clamp(1rem,2cqi,1.75rem) ;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(clamp(12rem,25cqi,20rem),1fr));
-    gap: clamp(2rem,5cqi,4rem);
-    background: linear-gradient(120deg,rgb(227, 227, 242),rgb(210, 237, 247),rgb(196, 196, 225));
-    width: 97%;
+.ui-shell:has(#dark:checked) .card-container {
+    color: #f1f5f9;
+    --text-muted: #9ca3af;
+    --card: #111827;
+    --border: #1f2937;
+    animation: delay 1s ease-in-out;
+    background: linear-gradient(140deg,rgba(44, 22, 40, 0.945),rgb(25, 44, 40),rgb(51, 20, 20));
 }
-.card img{
+.ui-shell:has(#dark:checked) {
+    animation: delay 1s ease-in-out;
+    background: linear-gradient(140deg,rgba(44, 22, 40, 0.945),rgb(25, 44, 40),rgb(51, 20, 20));
+}
+
+.sideButton {
+    max-width: fit-content;
+    max-height: fit-content;
+    position: fixed;
+    inset-block-start: 5px;
+    inset-inline-start: 10px;
+    z-index: 10;
+    font-size: 30px;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(100px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+.theme {
+    max-width: fit-content;
+    max-height: fit-content;
+    position: fixed;
+    inset-block-start: 5px;
+    inset-inline-end: 10px;
+    z-index: 10;
+    font-size: 30px;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(100px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.ui-shell:has(#side:checked) .sidebar {
+    opacity: 1;
+    transform: translateX(0%);
+}
+
+.ui-shell:has(#side:checked) .card-container {
+    padding-left: 365px;
+    width: 80%;
+}
+
+.sidebar {
+    position: fixed;
+    inset-block-start: 0;
+    padding: clamp(2rem, 3cqi, 2.5rem);
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(100px);
+    transform: translateX(-100%);
+    transition: all 0.5s ease-in-out;
+    z-index: 5;
+    width: 30cqi;
+    height: 100%;
+    opacity: 0;
+}
+
+.ui-shell:has(#phone:checked) #chair,
+.ui-shell:has(#phone:checked) #camera,
+.ui-shell:has(#phone:checked) #makeUp,
+.ui-shell:has(#phone:checked) #shampoo,
+.ui-shell:has(#phone:checked) #sweets {
+    display: none;
+}
+
+.ui-shell:has(#phone:checked) #phone {
+    width: 60cqi;
+    height: 60%;
+    position: relative;
+    inset-inline-start: 20%;
+    inset-block-start: 10%;
+}
+.ui-shell:has(#phone:checked) img{
+    width: 50%;
+}
+
+.ui-shell:has(#chair:checked) #phone,
+.ui-shell:has(#chair:checked) #camera,
+.ui-shell:has(#chair:checked) #makeUp,
+.ui-shell:has(#chair:checked) #shampoo,
+.ui-shell:has(#chair:checked) #sweets {
+    display: none;
+}
+.ui-shell:has(#chair:checked) #chair {
+    width: 60cqi;
+    height: 60%;
+    position: relative;
+    inset-inline-start: 20%;
+    inset-block-start: 10%;
+}
+.ui-shell:has(#chair:checked) img{
+    width: 50%;
+}
+
+.ui-shell:has(#camera:checked) #chair,
+.ui-shell:has(#camera:checked) #phone,
+.ui-shell:has(#camera:checked) #makeUp,
+.ui-shell:has(#camera:checked) #shampoo,
+.ui-shell:has(#camera:checked) #sweets {
+    display: none;
+}
+.ui-shell:has(#camera:checked) img{
+    width: 50%;
+}
+
+.ui-shell:has(#camera:checked) #camera {
+    width: 60cqi;
+    height: 60%;
+    position: relative;
+    inset-inline-start: 20%;
+    inset-block-start: 10%;
+}
+
+.ui-shell:has(#makeUp:checked) #chair,
+.ui-shell:has(#makeUp:checked) #camera,
+.ui-shell:has(#makeUp:checked) #phone,
+.ui-shell:has(#makeUp:checked) #shampoo,
+.ui-shell:has(#makeUp:checked) #sweets {
+    display: none;
+}
+.ui-shell:has(#makeUp:checked) img{
+    width: 50%;
+}
+
+.ui-shell:has(#makeUp:checked) #makeUP {
+    width: 60cqi;
+    height: 60%;
+    position: relative;
+    inset-inline-start: 20%;
+    inset-block-start: 10%;
+}
+
+.ui-shell:has(#shampoo:checked) #chair,
+.ui-shell:has(#shampoo:checked) #camera,
+.ui-shell:has(#shampoo:checked) #makeUp,
+.ui-shell:has(#shampoo:checked) #phone,
+.ui-shell:has(#shampoo:checked) #sweets {
+    display: none;
+}
+
+.ui-shell:has(#shampoo:checked) #shampoo {
+    width: 60cqi;
+    height: 60%;
+    position: relative;
+    inset-inline-start: 20%;
+    inset-block-start: 10%;
+}
+.ui-shell:has(#shampoo:checked) img{
+    width: 50%;
+}
+
+.ui-shell:has(#sweets:checked) #chair,
+.ui-shell:has(#sweets:checked) #camera,
+.ui-shell:has(#sweets:checked) #makeUp,
+.ui-shell:has(#sweets:checked) #shampoo,
+.ui-shell:has(#sweets:checked) #phone {
+    display: none;
+}
+.ui-shell:has(#sweets:checked) img{
+    width: 50%;
+}
+
+.ui-shell:has(#sweets:checked) #sweets {
+    width: 60cqi;
+    height: 60%;
+    position: relative;
+    inset-inline-start: 20%;
+    inset-block-start: 10%;
+}
+
+.card-container {
+    padding: clamp(1rem, 2cqi, 1.75rem);
+    height: max-content;
+    width: 100vw;
+    transition: all 0.5s ease-in-out;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(12rem, 25cqi, 20rem), 1fr));
+    gap: clamp(2rem, 5cqi, 4rem);
+    background: linear-gradient(120deg, rgb(227, 227, 242), rgb(210, 237, 247), rgb(196, 196, 225));
+}
+
+.card img {
     height: 60%;
     width: 85%;
     border-radius: 10px;
-    box-shadow: 0 30px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 30px 40px rgba(0, 0, 0, 0.1);
 }
-#shampoo img{
+
+#shampoo img {
     height: 50%;
 }
-.card h3{
+
+.card h3 {
     font-family: monospace;
-    font-size: clamp(1rem,2.5cqi,1.5rem);
-    padding-bottom: clamp(0.5rem,1.5cqi,0.7rem) ;
+    font-size: clamp(1rem, 2.5cqi, 1.5rem);
+    padding-bottom: clamp(0.5rem, 1.5cqi, 0.7rem);
     border-bottom: 1px dashed black;
 }
 
-.card{
+.card {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: clamp(1rem,3cqi,2rem);
+    padding: clamp(1rem, 3cqi, 2rem);
     display: flex;
+    max-width: fit-content;
+    max-height: fit-content;
     flex-direction: column;
-    justify-content: center ;
+    justify-content: center;
     align-items: center;
-    backdrop-filter: blur(100px) ;
-    background-color: rgba(255, 255, 255, 0.193);
+    backdrop-filter: blur(100px);
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     transition: all 0.8s ease-out;
 }
-.card:hover{
+
+.card:hover {
     transform: scale(1.05);
     outline: 2px solid rgb(179, 179, 245);
 }
