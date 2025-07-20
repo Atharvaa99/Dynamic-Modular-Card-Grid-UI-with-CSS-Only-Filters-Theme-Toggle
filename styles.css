@@ -2,6 +2,9 @@ body{
     margin: 0;
     width: 100vw;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 2px;
+    line-height: 1.5;
+    word-spacing: 3px;
 }
 .ui-shell{
     container-type: Inline-size;
