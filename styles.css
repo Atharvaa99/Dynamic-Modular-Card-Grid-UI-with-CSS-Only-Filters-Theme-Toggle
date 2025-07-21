@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    width: 100vw;
+    width: 99vw;
     height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     letter-spacing: 2px;
@@ -13,7 +13,7 @@ li::marker {
 }
 
 .ui-shell {
-    container-type: inline-size;
+    container-type: Inline-size;
     container-name: layout;
 }
 .ui-shell:has(#dark:checked) .card-container {
@@ -21,7 +21,7 @@ li::marker {
     --text-muted: #9ca3af;
     --card: #111827;
     --border: #1f2937;
-    animation: delay 1s ease-in-out;
+    height: 119vh;
     background: linear-gradient(140deg,rgba(44, 22, 40, 0.945),rgb(25, 44, 40),rgb(51, 20, 20));
 }
 .ui-shell:has(#dark:checked) {
@@ -73,6 +73,7 @@ li::marker {
     background-color: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(100px);
     transform: translateX(-100%);
+    border-radius: 10px;
     transition: all 0.5s ease-in-out;
     z-index: 5;
     width: 30cqi;
@@ -80,6 +81,9 @@ li::marker {
     opacity: 0;
 }
 
+.ui-shell:has(input:checked) .card-container{
+    height: 99vh;
+}
 .ui-shell:has(#phone:checked) #chair,
 .ui-shell:has(#phone:checked) #camera,
 .ui-shell:has(#phone:checked) #makeUp,
@@ -90,7 +94,7 @@ li::marker {
 
 .ui-shell:has(#phone:checked) #phone {
     width: 60cqi;
-    height: 60%;
+    height: 500px;
     position: relative;
     inset-inline-start: 20%;
     inset-block-start: 10%;
@@ -108,7 +112,7 @@ li::marker {
 }
 .ui-shell:has(#chair:checked) #chair {
     width: 60cqi;
-    height: 60%;
+    height: 500px;
     position: relative;
     inset-inline-start: 20%;
     inset-block-start: 10%;
@@ -130,7 +134,7 @@ li::marker {
 
 .ui-shell:has(#camera:checked) #camera {
     width: 60cqi;
-    height: 60%;
+    height: 500px;
     position: relative;
     inset-inline-start: 20%;
     inset-block-start: 10%;
@@ -147,9 +151,9 @@ li::marker {
     width: 50%;
 }
 
-.ui-shell:has(#makeUp:checked) #makeUP {
+.ui-shell:has(#makeUp:checked) #makeUp {
     width: 60cqi;
-    height: 60%;
+    height: 500px;
     position: relative;
     inset-inline-start: 20%;
     inset-block-start: 10%;
@@ -165,7 +169,7 @@ li::marker {
 
 .ui-shell:has(#shampoo:checked) #shampoo {
     width: 60cqi;
-    height: 60%;
+    height: 500px;
     position: relative;
     inset-inline-start: 20%;
     inset-block-start: 10%;
@@ -187,7 +191,7 @@ li::marker {
 
 .ui-shell:has(#sweets:checked) #sweets {
     width: 60cqi;
-    height: 60%;
+    height: 500px;
     position: relative;
     inset-inline-start: 20%;
     inset-block-start: 10%;
@@ -196,12 +200,13 @@ li::marker {
 .card-container {
     padding: clamp(1rem, 2cqi, 1.75rem);
     height: max-content;
-    width: 100vw;
+    width: 97vw;
     transition: all 0.5s ease-in-out;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(clamp(12rem, 25cqi, 20rem), 1fr));
     gap: clamp(2rem, 5cqi, 4rem);
-    background: linear-gradient(120deg, rgb(227, 227, 242), rgb(210, 237, 247), rgb(196, 196, 225));
+    background: linear-gradient(120deg, #a580e9, #9333ea, #f3e097);
+
 }
 
 .card img {
@@ -227,7 +232,7 @@ li::marker {
     padding: clamp(1rem, 3cqi, 2rem);
     display: flex;
     max-width: fit-content;
-    max-height: fit-content;
+    height: 50cqh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
