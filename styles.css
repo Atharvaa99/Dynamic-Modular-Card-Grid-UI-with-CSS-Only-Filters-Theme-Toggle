@@ -13,20 +13,14 @@ li::marker {
 }
 
 .ui-shell {
-    container-type: Inline-size;
-    container-name: layout;
+  container-type: inline-size;
+  container-name: layout;
+  min-height: 100vh;
 }
+
 .ui-shell:has(#dark:checked) .card-container {
-    color: #f1f5f9;
-    --text-muted: #9ca3af;
-    --card: #111827;
-    --border: #1f2937;
-    height: 119vh;
-    background: linear-gradient(140deg,rgba(44, 22, 40, 0.945),rgb(25, 44, 40),rgb(51, 20, 20));
-}
-.ui-shell:has(#dark:checked) {
-    animation: delay 1s ease-in-out;
-    background: linear-gradient(140deg,rgba(44, 22, 40, 0.945),rgb(25, 44, 40),rgb(51, 20, 20));
+  background: linear-gradient(140deg, rgba(44, 22, 40, 0.945), rgb(25, 44, 40), rgb(51, 20, 20));
+  color: #f1f5f9;
 }
 
 .sideButton {
@@ -82,7 +76,7 @@ li::marker {
 }
 
 .ui-shell:has(input:checked) .card-container{
-    height: 99vh;
+    min-height: 99vh;
 }
 .ui-shell:has(#phone:checked) #chair,
 .ui-shell:has(#phone:checked) #camera,
@@ -205,8 +199,7 @@ li::marker {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(clamp(12rem, 25cqi, 20rem), 1fr));
     gap: clamp(2rem, 5cqi, 4rem);
-    background: linear-gradient(120deg, #a580e9, #9333ea, #f3e097);
-
+    background: linear-gradient(120deg, #2e1065, #9333ea, #fde68a);
 }
 
 .card img {
