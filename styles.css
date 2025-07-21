@@ -266,8 +266,7 @@ body:has(#cancel:checked) label:not([for="focus-cancel"]) .card{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: clamp(1rem, 3cqi, 2rem);
     display: flex;
-    max-width: fit-content;
-    height: 50cqh;
+    height: 50cqb;
     flex-direction: column;
     justify-content: center;
     align-items: center;
