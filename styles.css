@@ -254,11 +254,22 @@ body:has(#cancel:checked) label:not([for="focus-cancel"]) .card{
 #shampoo img {
     height: 50%;
 }
+.card p,
+.card h3 {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  text-align: center;
+  font-size: clamp(0.8rem, 2.5cqi, 1rem);
+  line-height: 1.4;
+  padding: 0.5 1rem; /* Horizontal padding to avoid text touching card edges */
+  text-align: justify;
+}
+
 
 .card h3 {
     font-family: monospace;
     font-size: clamp(1rem, 2.5cqi, 1.5rem);
-    padding-bottom: clamp(0.5rem, 1.5cqi, 0.7rem);
     border-bottom: 1px dashed black;
 }
 
