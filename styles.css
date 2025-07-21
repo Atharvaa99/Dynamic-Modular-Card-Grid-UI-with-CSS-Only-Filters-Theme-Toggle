@@ -6,6 +6,7 @@ body {
     letter-spacing: 2px;
     line-height: 1.5;
     word-spacing: 3px;
+    transition: all 0.5s ease-in-out;
 }
 
 li::marker {
@@ -17,12 +18,39 @@ li::marker {
   container-name: layout;
   min-height: 100vh;
 }
+.focus-wrapper{
+    cursor: pointer;
+}
+:is(#chair-focus:checked, #shampoo-focus:checked, #phone-focus:checked, #camera-focus:checked, #makeUp-focus:checked, #sweets-focus:checked) + label .card {
+    transform: scale(1.05);
+    outline: 3px solid #9333ea;
+}
+body:has(#cancel:checked) label:not([for="focus-cancel"]) .card{
+    opacity: 1;
+    scale:1;
+    filter: blur(0px);    
+}
+
+.ui-shell:has(#chair-focus:checked) label:not([for="chair-focus"]) .card,
+.ui-shell:has(#camera-focus:checked) label:not([for="camera-focus"]) .card,
+.ui-shell:has(#shampoo-focus:checked) label:not([for="shampoo-focus"]) .card,
+.ui-shell:has(#makeUp-focus:checked) label:not([for="makeUp-focus"]) .card,
+.ui-shell:has(#sweets-focus:checked) label:not([for="sweets-focus"]) .card,
+.ui-shell:has(#phone-focus:checked) label:not([for="phone-focus"]) .card {
+  opacity: 0.3;
+  scale: 0.8;
+  filter: blur(1px);
+}
+
+
 
 .ui-shell:has(#dark:checked) .card-container {
   background: linear-gradient(140deg, rgba(44, 22, 40, 0.945), rgb(25, 44, 40), rgb(51, 20, 20));
   color: #f1f5f9;
 }
-
+.ui-shell:has(:checked) #symbol{
+    transform: rotate(180deg);
+}
 .sideButton {
     max-width: fit-content;
     max-height: fit-content;
@@ -89,7 +117,7 @@ li::marker {
 .ui-shell:has(#phone:checked) #phone {
     width: 60cqi;
     height: 500px;
-    position: relative;
+    position: absolute;
     inset-inline-start: 20%;
     inset-block-start: 10%;
 }
@@ -107,7 +135,7 @@ li::marker {
 .ui-shell:has(#chair:checked) #chair {
     width: 60cqi;
     height: 500px;
-    position: relative;
+    position: absolute;
     inset-inline-start: 20%;
     inset-block-start: 10%;
 }
@@ -129,7 +157,7 @@ li::marker {
 .ui-shell:has(#camera:checked) #camera {
     width: 60cqi;
     height: 500px;
-    position: relative;
+    position: absolute;
     inset-inline-start: 20%;
     inset-block-start: 10%;
 }
@@ -148,7 +176,7 @@ li::marker {
 .ui-shell:has(#makeUp:checked) #makeUp {
     width: 60cqi;
     height: 500px;
-    position: relative;
+    position: absolute;
     inset-inline-start: 20%;
     inset-block-start: 10%;
 }
@@ -164,7 +192,7 @@ li::marker {
 .ui-shell:has(#shampoo:checked) #shampoo {
     width: 60cqi;
     height: 500px;
-    position: relative;
+    position: absolute;
     inset-inline-start: 20%;
     inset-block-start: 10%;
 }
@@ -186,7 +214,7 @@ li::marker {
 .ui-shell:has(#sweets:checked) #sweets {
     width: 60cqi;
     height: 500px;
-    position: relative;
+    position: absolute;
     inset-inline-start: 20%;
     inset-block-start: 10%;
 }
