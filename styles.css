@@ -1,40 +1,177 @@
+/* === Global Settings === */
 body {
-    margin: 0;
-    width: 99vw;
-    height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    letter-spacing: 2px;
-    line-height: 1.5;
-    word-spacing: 3px;
-    transition: all 1s ease-in-out;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 2px;
+  line-height: 1.5;
+  word-spacing: 3px;
+  transition: all 1s ease-in-out;
+  background-color: #fff;
 }
 
+/* === Utilities === */
 li::marker {
-    content: "";
+  content: "";
+}
+.focus-wrapper {
+  cursor: pointer;
 }
 
+/* === Container Setup === */
 .ui-shell {
   container-type: inline-size;
   container-name: layout;
   min-height: 100vh;
 }
-.focus-wrapper{
-    cursor: pointer;
+
+/* === Theme and Sidebar Buttons === */
+.sideButton, .theme {
+  max-width: fit-content;
+  max-height: fit-content;
+  position: fixed;
+  inset-block-start: 5px;
+  z-index: 10;
+  font-size: 30px;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(100px);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
-:is(#chair-focus:checked, #shampoo-focus:checked, #phone-focus:checked, #camera-focus:checked, #makeUp-focus:checked, #sweets-focus:checked) + label .card {
-    transform: scale(1.05);
-    outline: 3px solid #9333ea;
-    box-shadow: 0 0 35px rgba(147, 51, 234, 0.5);
+.sideButton {
+  inset-inline-start: 10px;
 }
-:is(#chair-focus:checked, #shampoo-focus:checked,#phone-focus:checked,#camera-focus:checked, #makeUp-focus:checked, #sweets-focus:checked) + label .card #select{
-    display: inline;
-} 
-body:has(#cancel:checked) label:not([for="focus-cancel"]) .card{
-    opacity: 1;
-    scale:1;
-    filter: blur(0px);    
+.theme {
+  inset-inline-end: 10px;
+}
+.theme:hover,
+.sideButton:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
+/* === Card Layout === */
+.card-container {
+  padding: clamp(1rem, 2cqi, 1.75rem);
+  transition: all 0.5s ease-in-out;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(12rem, 25cqi, 20rem), 1fr));
+  gap: clamp(2rem, 5cqi, 4rem);
+  background: linear-gradient(120deg, #2e1065, #9333ea, #fde68a);
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* === Individual Card === */
+.card {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: clamp(1rem, 3cqi, 2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(100px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  transition: all 0.8s ease-out;
+  height: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.card img {
+  width: 85%;
+  border-radius: 10px;
+  box-shadow: 0 30px 40px rgba(0, 0, 0, 0.1);
+  max-width: 250px;
+  height: auto;
+}
+
+.card p,
+.card h3 {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  text-align: justify;
+  font-size: clamp(0.8rem, 2.5cqi, 1rem);
+  line-height: 1.4;
+  padding: 0.5rem 1rem;
+}
+
+.card h3 {
+  font-family: monospace;
+  font-size: clamp(1rem, 2.5cqi, 1.5rem);
+  border-bottom: 1px dashed black;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  outline: 2px solid rgb(179, 179, 245);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* === Selected Indicator === */
+.card #select {
+  display: none;
+  background-color: rgb(162, 162, 242);
+  padding: clamp(0.2rem, 0.5cqi, 0.4rem);
+  position: fixed;
+  inset-inline-start: 71%;
+  inset-block-start: -2%;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* === Sidebar === */
+.sidebar {
+  position: fixed;
+  inset-block-start: 0;
+  padding: clamp(2rem, 3cqi, 2.5rem);
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(100px);
+  transform: translateX(-100%);
+  border-radius: 10px;
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease-out;
+  z-index: 5;
+  width: 30cqi;
+  height: 100%;
+  opacity: 0;
+}
+.ui-shell:has(#side:checked) .sidebar {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.ui-shell:has(#side:checked) .card-container {
+  padding-left: 365px;
+}
+
+/* === Theme Switcher Effects === */
+.ui-shell:has(#dark:checked) .card-container {
+  background: linear-gradient(140deg, rgba(44, 22, 40, 0.945), rgb(25, 44, 40), rgb(51, 20, 20));
+  color: #f1f5f9;
+}
+.ui-shell:has(#dark:checked) body {
+  background-color: #111;
+}
+.ui-shell:has(:checked) #symbol {
+  transform: rotate(180deg);
+}
+
+/* === Focus & Highlight === */
+:is(#chair-focus:checked, #shampoo-focus:checked, #phone-focus:checked, #camera-focus:checked, #makeUp-focus:checked, #sweets-focus:checked) + label .card {
+  transform: scale(1.05);
+  outline: 3px solid #9333ea;
+  box-shadow: 0 0 35px rgba(147, 51, 234, 0.5);
+}
+:is(#chair-focus:checked, #shampoo-focus:checked,#phone-focus:checked,#camera-focus:checked, #makeUp-focus:checked, #sweets-focus:checked) + label .card #select {
+  display: inline;
+}
+body:has(#cancel:checked) label:not([for="focus-cancel"]) .card {
+  opacity: 1;
+  scale: 1;
+  filter: blur(0px);
+}
 .ui-shell:has(#chair-focus:checked) label:not([for="chair-focus"]) .card,
 .ui-shell:has(#camera-focus:checked) label:not([for="camera-focus"]) .card,
 .ui-shell:has(#shampoo-focus:checked) label:not([for="shampoo-focus"]) .card,
@@ -46,269 +183,39 @@ body:has(#cancel:checked) label:not([for="focus-cancel"]) .card{
   filter: blur(1px);
 }
 
-
-
-.ui-shell:has(#dark:checked) .card-container {
-  background: linear-gradient(140deg, rgba(44, 22, 40, 0.945), rgb(25, 44, 40), rgb(51, 20, 20));
-  color: #f1f5f9;
+/* === Filter === */
+.ui-shell:has(#fclear:checked) .card {
+  display: flex !important;
 }
-.ui-shell:has(:checked) #symbol{
-    transform: rotate(180deg);
-}
-.sideButton {
-    max-width: fit-content;
-    max-height: fit-content;
-    position: fixed;
-    inset-block-start: 5px;
-    inset-inline-start: 10px;
-    z-index: 10;
-    font-size: 30px;
-    background-color: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(100px);
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-}
-.theme {
-    max-width: fit-content;
-    max-height: fit-content;
-    position: fixed;
-    inset-block-start: 5px;
-    inset-inline-end: 10px;
-    z-index: 10;
-    font-size: 30px;
-    background-color: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(100px);
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+.ui-shell:has(#fphone:checked, #fshampoo:checked, #fsweets:checked, #fmakeUp:checked, #fchair:checked, #fcamera:checked):not(:has(#fclear:checked)) .card {
+  display: none;
 }
 
-.ui-shell:has(#side:checked) .sidebar {
-    opacity: 1;
-    transform: translateX(0%);
+.ui-shell:has(#fphone:checked):not(:has(#fclear:checked)) #phone,
+.ui-shell:has(#fshampoo:checked):not(:has(#fclear:checked)) #shampoo,
+.ui-shell:has(#fsweets:checked):not(:has(#fclear:checked)) #sweets,
+.ui-shell:has(#fmakeUp:checked):not(:has(#fclear:checked)) #makeUp,
+.ui-shell:has(#fchair:checked):not(:has(#fclear:checked)) #chair,
+.ui-shell:has(#fcamera:checked):not(:has(#fclear:checked)) #camera {
+  display: flex !important;
+}
+.ui-shell:has(#fphone:checked):not(:has(#phone)) .card:not(#phone),
+.ui-shell:has(#fshampoo:checked):not(:has(#shampoo)) .card:not(#shampoo),
+.ui-shell:has(#fsweets:checked):not(:has(#sweets)) .card:not(#sweets),
+.ui-shell:has(#fmakeUp:checked):not(:has(#makeUp)) .card:not(#makeUp),
+.ui-shell:has(#fchair:checked):not(:has(#chair)) .card:not(#chair),
+.ui-shell:has(#fcamera:checked):not(:has(#camera)) .card:not(#camera) {
+  display: none !important;
 }
 
-.ui-shell:has(#side:checked) .card-container {
-    padding-left: 365px;
-    width: 80%;
-}
-
-.sidebar {
-    position: fixed;
-    inset-block-start: 0;
-    padding: clamp(2rem, 3cqi, 2.5rem);
-    background-color: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(100px);
-    transform: translateX(-100%);
-    border-radius: 10px;
-    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease-out;
-    z-index: 5;
-    width: 30cqi;
-    height: 100%;
-    opacity: 0;
-}
-
-.ui-shell:has(input:checked) .card-container{
-    min-height: 99vh;
-}
-.ui-shell:has(#fclear:checked) #phone,
-.ui-shell:has(#fclear:checked) #chair,
-.ui-shell:has(#fclear:checked) #shampoo,
-.ui-shell:has(#fclear:checked) #camera,
-.ui-shell:has(#fclear:checked) #sweets,
-.ui-shell:has(#fclear:checked) #makeUp{
-    display:flex !important; 
-}
-.ui-shell:has(#fphone:checked) #phone{
-    display: flex;
-}
-.ui-shell:has(#fsweets:checked):not(:has(#fphone:checked)) #phone,
-.ui-shell:has(#fshampoo:checked):not(:has(#fphone:checked)) #phone,
-.ui-shell:has(#fcamera:checked):not(:has(#fphone:checked)) #phone,
-.ui-shell:has(#fchair:checked):not(:has(#fphone:checked)) #phone,
-.ui-shell:has(#fmakeUp:checked):not(:has(#fphone:checked)) #phone{
-    display: none;
-}
-.ui-shell:has(#fphone:checked) #phone {
-    width: 60cqi;
-    min-height: 500px;
-}
-.ui-shell:has(#fphone:checked) img{
-    width: 50%;
-}
-
-.ui-shell:has(#fchair:checked) #chair{
-    display: flex;
-}
-.ui-shell:has(#fsweets:checked):not(:has(#fchair:checked)) #chair,
-.ui-shell:has(#fshampoo:checked):not(:has(#fchair:checked)) #chair,
-.ui-shell:has(#fcamera:checked):not(:has(#fchair:checked)) #chair,
-.ui-shell:has(#fphone:checked):not(:has(#fchair:checked)) #chair,
-.ui-shell:has(#fmakeUp:checked):not(:has(#fchair:checked)) #chair{
-    display: none;
-}
-.ui-shell:has(#fchair:checked) #chair {
-    width: 60cqi;
-    height: 500px;
-}
-.ui-shell:has(#fchair:checked) img{
-    width: 50%;
-}
-
-.ui-shell:has(#fcamera:checked) #phone{
-    display: flex;
-}
-.ui-shell:has(#fsweets:checked):not(:has(#fcamera:checked)) #camera,
-.ui-shell:has(#fshampoo:checked):not(:has(#fcamera:checked)) #camera,
-.ui-shell:has(#fphone:checked):not(:has(#fcamera:checked)) #camera,
-.ui-shell:has(#fchair:checked):not(:has(#fcamera:checked)) #camera,
-.ui-shell:has(#fmakeUp:checked):not(:has(#fcamera:checked)) #camera{
-    display: none;
-}
-.ui-shell:has(#fcamera:checked) img{
-    width: 50%;
-}
-
-.ui-shell:has(#fcamera:checked) #camera {
-    width: 60cqi;
-    height: 500px;
-   
-}
-
-.ui-shell:has(#fmakeUp:checked) #makeUp{
-    display: flex;
-}
-.ui-shell:has(#fsweets:checked):not(:has(#fmakeUp:checked)) #makeUp,
-.ui-shell:has(#fshampoo:checked):not(:has(#fmakeUp:checked)) #makeUp,
-.ui-shell:has(#fcamera:checked):not(:has(#fmakeUp:checked)) #makeUp,
-.ui-shell:has(#fchair:checked):not(:has(#fmakeUp:checked)) #makeUp,
-.ui-shell:has(#fphone:checked):not(:has(#fmakeUp:checked)) #makeUp{
-    display: none;
-}
-.ui-shell:has(#fmakeUp:checked) img{
-    width: 50%;
-}
-
-.ui-shell:has(#fmakeUp:checked) #makeUp {
-    width: 60cqi;
-    height: 500px;
-  
+/* === Responsive  === */
+@media screen and (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
+  .card-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 
-.ui-shell:has(#fshampoo:checked) #shampoo{
-    display: flex;
-}
-.ui-shell:has(#fsweets:checked):not(:has(#fshampoo:checked)) #shampoo,
-.ui-shell:has(#fphone:checked):not(:has(#fshampoo:checked)) #shampoo,
-.ui-shell:has(#fcamera:checked):not(:has(#fshampoo:checked)) #shampoo,
-.ui-shell:has(#fchair:checked):not(:has(#fshampoo:checked)) #shampoo,
-.ui-shell:has(#fmakeUp:checked):not(:has(#fshampoo:checked)) #shampoo{
-    display: none;
-}
-.ui-shell:has(#fshampoo:checked) #shampoo {
-    width: 60cqi;
-    height: 500px;
-}
-.ui-shell:has(#fshampoo:checked) img{
-    width: 50%;
-}
-
-
-.ui-shell:has(#fsweets:checked) #sweets{
-    display: flex;
-}
-.ui-shell:has(#fphone:checked):not(:has(#fsweets:checked)) #sweets,
-.ui-shell:has(#fshampoo:checked):not(:has(#fsweets:checked)) #sweets,
-.ui-shell:has(#fcamera:checked):not(:has(#fsweets:checked)) #sweets,
-.ui-shell:has(#fchair:checked):not(:has(#fsweets:checked)) #sweets,
-.ui-shell:has(#fmakeUp:checked):not(:has(#fsweets:checked)) #sweets{
-    display: none;
-}
-.ui-shell:has(#fsweets:checked) img{
-    width: 50%;
-}
-
-.ui-shell:has(#fsweets:checked) #sweets {
-    width: 60cqi;
-    height: 500px;
-}
-
-.card-container {
-    padding: clamp(1rem, 2cqi, 1.75rem);
-    height: max-content;
-    width: 97vw;
-    transition: all 0.5s ease-in-out;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(clamp(12rem, 25cqi, 20rem), 1fr));
-    gap: clamp(2rem, 5cqi, 4rem);
-    background: linear-gradient(120deg, #2e1065, #9333ea, #fde68a);
-}
-
-.card img {
-    height: 60%;
-    width: 85%;
-    border-radius: 10px;
-    box-shadow: 0 30px 40px rgba(0, 0, 0, 0.1);
-}
-
-#shampoo img {
-    height: 50%;
-}
-.card p,
-.card h3 {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
-  text-align: center;
-  font-size: clamp(0.8rem, 2.5cqi, 1rem);
-  line-height: 1.4;
-  padding: 0.5 1rem; /* Horizontal padding to avoid text touching card edges */
-  text-align: justify;
-}
-
-
-.card h3 {
-    font-family: monospace;
-    font-size: clamp(1rem, 2.5cqi, 1.5rem);
-    border-bottom: 1px dashed black;
-}
-
-.card {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: clamp(1rem, 3cqi, 2rem);
-    display: flex;
-    max-width: fit-content;
-    height: 50cqh;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(100px);
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    transition: all 0.8s ease-out;
-}
-
-.card:hover {
-  transform: translateY(-5px) scale(1.05);
-  outline: 2px solid rgb(179, 179, 245);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.theme:hover,
-.sideButton:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-}
-.card #select {
-    display: none;
-    background-color: rgb(162, 162, 242);
-    padding: clamp(0.2rem,0.5cqi,0.4rem);
-    position: fixed;
-    inset-inline-start:71%;
-    inset-block-start: -2%;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
